@@ -15,7 +15,10 @@ SystemCursor("Init")
 MouseGetPos mX0, mY0
 
 ; Set a timer to check if the mouse is still idle every 250ms
-SetTimer, CheckIdle, 250
+iFrequency := 250
+iThreshold := 500
+iTimer := iThreshold
+SetTimer, CheckIdle, %iFrequency%
 
 ; Register the keys you want to listen on
 keys := "``1234567890-=qwertyuiop[]\asdfghjkl;'zxcvbnm,./"
@@ -32,6 +35,15 @@ if (mX0 != mX && mY0 != mY)
 {
     SystemCursor("On")
     mX0 := mX, mY0 := mY
+    iTimer := iThreshold
+}
+else if (iTimer > 0)
+{
+    iTimer -= iFrequency
+}
+else
+{
+    SystemCursor("Off")
 }
 return
 
