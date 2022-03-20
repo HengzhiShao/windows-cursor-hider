@@ -4,6 +4,7 @@
 ; Author:         Stefan Z Camilleri - stefan@camilleri.me
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#SingleInstance Force  ; Recommended for easier testing new versions
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
@@ -17,7 +18,7 @@ MouseGetPos mX0, mY0
 SetTimer, CheckIdle, 250
 
 ; Register the keys you want to listen on
-keys = ``1234567890-=qwertyuiop[]\asdfghjkl;'zxcvbnm,./
+keys := "``1234567890-=qwertyuiop[]\asdfghjkl;'zxcvbnm,./"
 
 ; For every defined key, register a call to hide the mouse cursor
 Loop Parse, keys
